@@ -42,19 +42,19 @@ pub fn run_gradient_ui(lang: Lang) -> Result<(), String> {
         execute!(stdout, cursor::MoveTo(2, 1)).ok();
         print_bloo_cava(&mut stdout);
 
-        execute!(stdout, cursor::MoveTo(2, 9)).ok();
+        execute!(stdout, cursor::MoveTo(2, 13)).ok();
         execute!(stdout, SetForegroundColor(Color::Rgb { r: 150, g: 150, b: 150 })).ok();
         execute!(stdout, Print(s.gradient_mode)).ok();
         execute!(stdout, ResetColor).ok();
 
-        execute!(stdout, cursor::MoveTo(2, 11)).ok();
+        execute!(stdout, cursor::MoveTo(2, 15)).ok();
         execute!(stdout, SetForegroundColor(Color::White)).ok();
         execute!(stdout, Print(s.color_count)).ok();
         execute!(stdout, ResetColor).ok();
 
         for i in 2..=5 {
             let x = 24 + ((i - 2) as u16 * 10);
-            execute!(stdout, cursor::MoveTo(x, 11)).ok();
+            execute!(stdout, cursor::MoveTo(x, 15)).ok();
             if i == selected_count {
                 execute!(stdout, SetForegroundColor(Color::White)).ok();
                 execute!(stdout, Print(format!("[{}]", i))).ok();
@@ -65,7 +65,7 @@ pub fn run_gradient_ui(lang: Lang) -> Result<(), String> {
             execute!(stdout, ResetColor).ok();
         }
 
-        let input_start_y = 13;
+        let input_start_y = 17;
         for i in 0..selected_count {
             let y = input_start_y + (i as u16 * 2);
             let slot = &colors[i];
@@ -293,16 +293,20 @@ fn print_bloo_cava(w: &mut io::Stdout) {
     let grey = Color::Rgb { r: 80, g: 80, b: 80 };
     let white = Color::White;
     let lines = [
-        "\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}                                \u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}",
-        "\u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}                         \u{2588}\u{2588}",
-        "\u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}   \u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}   \u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}   \u{2588}\u{2588}           \u{2588}\u{2588}\u{2588}\u{2588}     \u{2588}\u{2588}    \u{2588}\u{2588}     \u{2588}\u{2588}\u{2588}\u{2588}",
-        "\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}     \u{2588}\u{2588}   \u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}         \u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}    \u{2588}\u{2588}",
-        "\u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}   \u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}         \u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}   \u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}",
-        "\u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}   \u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}         \u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}  \u{2588}\u{2588}     \u{2588}\u{2588}    \u{2588}\u{2588}",
-        "\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}   \u{2588}\u{2588}   \u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}   \u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}   \u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}   \u{2588}\u{2588}    \u{2588}\u{2588}     \u{2588}\u{2588}       \u{2588}\u{2588}    \u{2588}\u{2588}",
+            "██████████    ████         ███████        ███████        ████████      ████████     ████      ████     ███████   ",   
+            "████     ██   ████       ███     ███    ███     ███    ███     ███   ███      ███   ████      ████   ███     ███ ",
+            "████     ███  ████      ████     ████  ████     ████  ████     ███  ████      ████  ████      ████  ████     ████", 
+            "████     ███  ████      ████     ████  ████     ████  ████     █    ████      ████  ████      ████  ████     ████", 
+            "████     ███  ████      ████     ████  ████     ████  ████          ████      ████  ████      ████  ████     ████", 
+            "███████████   ████      ████     ████  ████     ████  ████          ██████████████  ████      ████  █████████████", 
+            "████     ███  ████      ████     ████  ████     ████  ████          ████      ████  ████      ████  ████     ████",
+            "████     ███  ████      ████     ████  ████     ████  ████     █    ████      ████  ████      ████  ████     ████",
+            "████     ███  ████      ████     ████  ████     ████  ████     ███  ████      ████   █████  █████   ████     ████", 
+            " ███     ███  ████        ██     ███     ██     ██     ███     ███  ████      ██       ███  ███     ████     ██  ", 
+            "   █████████  █████████    ███████        ███████        ███████    ████      █          ████       ████     █   ",
     ];
 
-    let split = 38;
+    let split = 53;
     for (i, line) in lines.iter().enumerate() {
         let bloo: String = line.chars().take(split).collect();
         let cava: String = line.chars().skip(split).collect();

@@ -129,7 +129,7 @@ pub fn write_solid_color(color: &str) -> Result<(), String> {
                 continue;
             }
 
-            if clean.starts_with("gradient_color_") {
+            if clean.starts_with("gradient_color_") || clean.starts_with("gradient_count") {
                 continue;
             }
         }
@@ -224,7 +224,7 @@ pub fn write_gradient(colors: &[String]) -> Result<(), String> {
 
 fn reload_cava_colors() {
     let _ = std::process::Command::new("pkill")
-        .args(["-x", "-USR2", "cava"])
+        .args(["-x", "-USR1", "cava"])
         .stdin(std::process::Stdio::null())
         .stdout(std::process::Stdio::null())
         .stderr(std::process::Stdio::null())

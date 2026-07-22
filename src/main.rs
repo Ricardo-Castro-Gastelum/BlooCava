@@ -74,18 +74,18 @@ fn run_main_menu() -> Result<(), String> {
             execute!(stdout, cursor::MoveTo(2, 1)).ok();
             print_bloo_cava(&mut stdout);
 
-            execute!(stdout, cursor::MoveTo(2, 9)).ok();
+            execute!(stdout, cursor::MoveTo(2, 13)).ok();
             execute!(stdout, SetForegroundColor(Color::Rgb { r: 150, g: 150, b: 150 })).ok();
             execute!(stdout, Print(s.title)).ok();
             execute!(stdout, ResetColor).ok();
 
-            execute!(stdout, cursor::MoveTo(2, 11)).ok();
+            execute!(stdout, cursor::MoveTo(2, 15)).ok();
             execute!(stdout, SetForegroundColor(Color::Rgb { r: 100, g: 100, b: 100 })).ok();
             execute!(stdout, Print(s.select_option)).ok();
             execute!(stdout, ResetColor).ok();
 
             for (i, opt) in options.iter().enumerate() {
-                let y = 13 + (i as u16);
+                let y = 17 + (i as u16);
                 execute!(stdout, cursor::MoveTo(4, y)).ok();
 
                 if i == selected {
@@ -98,12 +98,12 @@ fn run_main_menu() -> Result<(), String> {
                 execute!(stdout, ResetColor).ok();
             }
 
-            execute!(stdout, cursor::MoveTo(2, 16)).ok();
+            execute!(stdout, cursor::MoveTo(2, 20)).ok();
             execute!(stdout, SetForegroundColor(Color::Rgb { r: 100, g: 100, b: 100 })).ok();
             execute!(stdout, Print(s.nav_help)).ok();
             execute!(stdout, ResetColor).ok();
 
-            execute!(stdout, cursor::MoveTo(2, 18)).ok();
+            execute!(stdout, cursor::MoveTo(2, 22)).ok();
             execute!(stdout, SetForegroundColor(Color::Rgb { r: 100, g: 100, b: 100 })).ok();
             execute!(stdout, Print(s.lang_select)).ok();
             execute!(stdout, ResetColor).ok();
@@ -115,7 +115,7 @@ fn run_main_menu() -> Result<(), String> {
                 lang::Lang::En => (false, true),
             };
 
-            execute!(stdout, cursor::MoveTo(4, 19)).ok();
+            execute!(stdout, cursor::MoveTo(4, 23)).ok();
             if active_es {
                 execute!(stdout, SetForegroundColor(Color::White)).ok();
             } else {
@@ -124,7 +124,7 @@ fn run_main_menu() -> Result<(), String> {
             execute!(stdout, Print(lang_es)).ok();
             execute!(stdout, ResetColor).ok();
 
-            execute!(stdout, cursor::MoveTo(20, 19)).ok();
+            execute!(stdout, cursor::MoveTo(20, 23)).ok();
             if active_en {
                 execute!(stdout, SetForegroundColor(Color::White)).ok();
             } else {
@@ -133,7 +133,7 @@ fn run_main_menu() -> Result<(), String> {
             execute!(stdout, Print(lang_en)).ok();
             execute!(stdout, ResetColor).ok();
 
-            execute!(stdout, cursor::MoveTo(2, 21)).ok();
+            execute!(stdout, cursor::MoveTo(2, 25)).ok();
             execute!(stdout, SetForegroundColor(Color::Rgb { r: 80, g: 80, b: 80 })).ok();
             execute!(stdout, Print("[1] ES  [2] EN")).ok();
             execute!(stdout, ResetColor).ok();
@@ -178,9 +178,9 @@ fn run_main_menu() -> Result<(), String> {
                     _ => {}
                 }
             }
-        }
+        } 
     })();
-
+ 
     cleanup_terminal(&mut stdout);
     result
 }
@@ -188,17 +188,21 @@ fn run_main_menu() -> Result<(), String> {
 fn print_bloo_cava(w: &mut io::Stdout) {
     let grey = Color::Rgb { r: 80, g: 80, b: 80 };
     let white = Color::White;
-    let lines = [
-        "\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}                                \u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}",
-        "\u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}                         \u{2588}\u{2588}",
-        "\u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}   \u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}   \u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}   \u{2588}\u{2588}           \u{2588}\u{2588}\u{2588}\u{2588}     \u{2588}\u{2588}    \u{2588}\u{2588}     \u{2588}\u{2588}\u{2588}\u{2588}",
-        "\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}     \u{2588}\u{2588}   \u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}         \u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}    \u{2588}\u{2588}",
-        "\u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}   \u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}         \u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}   \u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}",
-        "\u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}   \u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}         \u{2588}\u{2588}    \u{2588}\u{2588}   \u{2588}\u{2588}  \u{2588}\u{2588}     \u{2588}\u{2588}    \u{2588}\u{2588}",
-        "\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}   \u{2588}\u{2588}   \u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}   \u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}   \u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}\u{2588}   \u{2588}\u{2588}    \u{2588}\u{2588}     \u{2588}\u{2588}       \u{2588}\u{2588}    \u{2588}\u{2588}",
+    let lines = [                                                                                                     
+            "██████████    ████         ███████        ███████        ████████      ████████     ████      ████     ███████   ",   
+            "████     ██   ████       ███     ███    ███     ███    ███     ███   ███      ███   ████      ████   ███     ███ ",
+            "████     ███  ████      ████     ████  ████     ████  ████     ███  ████      ████  ████      ████  ████     ████", 
+            "████     ███  ████      ████     ████  ████     ████  ████     █    ████      ████  ████      ████  ████     ████", 
+            "████     ███  ████      ████     ████  ████     ████  ████          ████      ████  ████      ████  ████     ████", 
+            "███████████   ████      ████     ████  ████     ████  ████          ██████████████  ████      ████  █████████████", 
+            "████     ███  ████      ████     ████  ████     ████  ████          ████      ████  ████      ████  ████     ████",
+            "████     ███  ████      ████     ████  ████     ████  ████     █    ████      ████  ████      ████  ████     ████",
+            "████     ███  ████      ████     ████  ████     ████  ████     ███  ████      ████   █████  █████   ████     ████", 
+            " ███     ███  ████        ██     ███     ██     ██     ███     ███  ████      ██       ███  ███     ████     ██  ", 
+            "   █████████  █████████    ███████        ███████        ███████    ████      █          ████       ████     █   ",  
     ];
 
-    let split = 38;
+    let split = 53;
     for (i, line) in lines.iter().enumerate() {
         let bloo: String = line.chars().take(split).collect();
         let cava: String = line.chars().skip(split).collect();

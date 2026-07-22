@@ -20,7 +20,7 @@
 - **Gradient mode** — 2-5 colors, bottom to top
 - **Live preview** — see colors before applying
 - **Bilingual** — Spanish / English interface
-- **Auto-reload** — sends `SIGUSR2` to Cava after config change
+- **Auto-reload** — sends `SIGUSR1` to Cava after config change
 - **Minimal** — no dependencies, just Cava
 
 ## Install
@@ -62,7 +62,7 @@ bloocava -v
 5. See live preview
 6. Press **Enter** to apply
 
-BlooCava writes to `~/.config/cava/config` and sends `SIGUSR2` to reload Cava automatically.
+BlooCava writes to `~/.config/cava/config` and sends `SIGUSR1` to reload Cava automatically.
 
 ## Controls
 
